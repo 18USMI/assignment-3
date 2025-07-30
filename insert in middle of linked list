@@ -1,0 +1,25 @@
+class Solution {
+  public:
+    // Function to insert a node in the middle of the linked list.
+    Node* insertInMiddle(Node* head, int x) {
+        Node* newNode = new Node(x);
+        
+        // If the list is empty, return the new node
+        if (head == NULL) return newNode;
+        
+        // Step 1: Find the middle using slow and fast pointer
+        Node* slow = head;
+        Node* fast = head;
+        
+        while (fast->next != NULL && fast->next->next != NULL) {
+            slow = slow->next;
+            fast = fast->next->next;
+        }
+        
+        // Step 2: Insert after the middle
+        newNode->next = slow->next;
+        slow->next = newNode;
+        
+        return head;
+    }
+};
